@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MindTrack – Simple</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+
+    <h1>MindTrack – Simple Mood Journal</h1>
+
+    <!-- Auth section -->
+    <div id="auth-section">
+        <div class="card">
+            <h2>Register</h2>
+            <input id="reg-username" type="text" placeholder="Username">
+            <input id="reg-password" type="password" placeholder="Password">
+            <button id="reg-btn">Register</button>
+            <p class="message" id="reg-message"></p>
+        </div>
+
+        <div class="card">
+            <h2>Login</h2>
+            <input id="login-username" type="text" placeholder="Username">
+            <input id="login-password" type="password" placeholder="Password">
+            <button id="login-btn">Login</button>
+            <p class="message" id="login-message"></p>
+        </div>
+    </div>
+
+    <!-- App section (hidden until logged in) -->
+    <div id="app-section" class="hidden">
+        <div class="top-bar">
+            <span id="welcome-text"></span>
+            <button id="logout-btn" class="secondary">Logout</button>
+        </div>
+
+        <div class="card">
+            <h2>New Journal Entry</h2>
+            <textarea id="entry-content" rows="6"
+                      placeholder="Write how you feel today..."></textarea>
+            <button id="save-entry-btn">Save Entry</button>
+            <p class="message" id="entry-message"></p>
+        </div>
+
+        <div class="card">
+            <h2>Your Mood Overview</h2>
+            <div id="mood-stats">
+                <div class="stat-box positive">Positive: <span id="stat-positive">0</span></div>
+                <div class="stat-box neutral">Neutral: <span id="stat-neutral">0</span></div>
+                <div class="stat-box negative">Negative: <span id="stat-negative">0</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Your Previous Entries</h2>
+            <div id="entries-list"></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

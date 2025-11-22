@@ -1,0 +1,157 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f7fb;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0 8px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background: #3498db;
+    color: #ffffff;
+    cursor: pointer;
+    margin-top: 4px;
+}
+
+button.secondary {
+    background: #95a5a6;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.message {
+    color: #666;
+    margin-top: 8px;
+    min-height: 1em;
+}
+
+.hidden {
+    display: none;
+}
+
+#auth-section {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+#auth-section .card {
+    flex: 1;
+    min-width: 250px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+#entries-list .entry {
+    border-bottom: 1px solid #eee;
+    padding: 8px 0;
+}
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.entry-label {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #fff;
+}
+
+.label-Positive {
+    background: #27ae60;
+}
+
+.label-Neutral {
+    background: #7f8c8d;
+}
+
+.label-Negative {
+    background: #c0392b;
+}
+
+.entry-timestamp {
+    font-size: 12px;
+    color: #888;
+}
+
+.entry-content {
+    margin-top: 4px;
+    white-space: pre-wrap;
+}
+
+.entry-actions {
+    margin-top: 4px;
+}
+
+.entry-actions button {
+    background: #e74c3c;
+    font-size: 12px;
+    padding: 4px 8px;
+}
+
+#mood-stats {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.stat-box {
+    padding: 8px;
+    border-radius: 6px;
+    color: #fff;
+    min-width: 120px;
+    text-align: center;
+}
+
+.stat-box.positive {
+    background: #27ae60;
+}
+
+.stat-box.neutral {
+    background: #7f8c8d;
+}
+
+.stat-box.negative {
+    background: #c0392b;
+}

@@ -1,0 +1,14 @@
+# Maven
+target/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# OS files
+.DS_Store
+git init
+git add .
+git commit -m "Initial MindTrack project"
+git branch -M main
