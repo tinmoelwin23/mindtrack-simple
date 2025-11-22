@@ -29,10 +29,14 @@ public class SentimentService {
         int neg = 0;
 
         for (String word : positiveWords) {
-            if (lower.contains(word)) pos++;
+            if (lower.contains(word)) {
+                pos++;
+            }
         }
         for (String word : negativeWords) {
-            if (lower.contains(word)) neg++;
+            if (lower.contains(word)) {
+                neg++;
+            }
         }
 
         int total = pos + neg;
@@ -66,8 +70,12 @@ public class SentimentService {
             this.label = label;
         }
 
-        public double getScore() { return score; }
+        public double getScore() {
+            return score;
+        }
 
-        public String getLabel() { return label; }
+        public String getLabel() {
+            return label;
+        }
     }
 }

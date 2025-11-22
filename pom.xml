@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -12,13 +11,12 @@
     <packaging>jar</packaging>
 
     <name>mindtrack-simple</name>
-    <description>Simple MindTrack app with Java backend and vanilla JS frontend</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.5</version>
-        <relativePath/> <!-- use latest Spring Boot 3.x available in your Maven -->
+        <relativePath/>
     </parent>
 
     <properties>
@@ -26,13 +24,11 @@
     </properties>
 
     <dependencies>
-        <!-- Web / REST -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- JPA + H2 for simple database -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -44,10 +40,11 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- For JSON (included with spring-boot-starter-web) -->
-        <!-- No extra dependency needed -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+        </dependency>
 
-        <!-- Test (optional) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -57,7 +54,6 @@
 
     <build>
         <plugins>
-            <!-- Allow `mvn spring-boot:run` -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>

@@ -8,9 +8,11 @@
 <body>
 <div class="container">
 
-    <h1>MindTrack – Simple Mood Journal</h1>
+    <div class="header-row">
+        <h1>MindTrack – Simple Mood Journal</h1>
+        <button id="theme-toggle">Dark mode</button>
+    </div>
 
-    <!-- Auth section -->
     <div id="auth-section">
         <div class="card">
             <h2>Register</h2>
@@ -29,17 +31,44 @@
         </div>
     </div>
 
-    <!-- App section (hidden until logged in) -->
     <div id="app-section" class="hidden">
         <div class="top-bar">
             <span id="welcome-text"></span>
             <button id="logout-btn" class="secondary">Logout</button>
         </div>
 
+        <div class="card" id="profile-card">
+            <h2>Your Profile</h2>
+            <div class="profile-content">
+                <img id="profile-photo" src="profile.jpg" alt="Profile photo">
+                <div class="profile-text">
+                    <p><strong>Username:</strong> <span id="profile-username"></span></p>
+                    <p><strong>Total entries:</strong> <span id="profile-total"></span></p>
+                    <p>
+                        <strong>Positive:</strong> <span id="profile-positive"></span>
+                        ·
+                        <strong>Neutral:</strong> <span id="profile-neutral"></span>
+                        ·
+                        <strong>Negative:</strong> <span id="profile-negative"></span>
+                    </p>
+                    <p id="profile-advice-text">
+                        This journal helps you notice patterns in your mood and gently take care of yourself.
+                    </p>
+                </div>
+            </div>
+            <div id="negative-warning" class="hidden advice-box">
+                <h3>Take a moment for yourself</h3>
+                <p>
+                    It looks like you have been writing about difficult feelings recently. Try to pause, breathe slowly,
+                    and do one small kind thing for yourself today. If things feel heavy for a long time, talking to someone
+                    you trust or a professional can help.
+                </p>
+            </div>
+        </div>
+
         <div class="card">
             <h2>New Journal Entry</h2>
-            <textarea id="entry-content" rows="6"
-                      placeholder="Write how you feel today..."></textarea>
+            <textarea id="entry-content" rows="6" placeholder="Write how you feel today..."></textarea>
             <button id="save-entry-btn">Save Entry</button>
             <p class="message" id="entry-message"></p>
         </div>
@@ -51,6 +80,9 @@
                 <div class="stat-box neutral">Neutral: <span id="stat-neutral">0</span></div>
                 <div class="stat-box negative">Negative: <span id="stat-negative">0</span></div>
             </div>
+            <div class="chart-wrapper">
+                <canvas id="moodChart"></canvas>
+            </div>
         </div>
 
         <div class="card">
@@ -61,6 +93,7 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@ import com.example.mindtrack.model.User;
 import com.example.mindtrack.repo.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -15,6 +16,7 @@ public class AuthController {
 
     private final UserRepository userRepository;
     private static final String SESSION_USER_ID = "USER_ID";
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public AuthController(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -25,8 +27,7 @@ public class AuthController {
         String username = body.get("username");
         String password = body.get("password");
 
-        if (username == null || username.isBlank()
-                || password == null || password.isBlank()) {
+        if (username == null || username.isBlank() || password == null || password.isBlank()) {
             return ResponseEntity.badRequest().body(Map.of("message", "Username and password required"));
         }
 
@@ -34,7 +35,8 @@ public class AuthController {
             return ResponseEntity.badRequest().body(Map.of("message", "Username already exists"));
         }
 
-        User user = new User(username, password);
+        String hashed = passwordEncoder.encode(password);
+        User user = new User(username, hashed);
         userRepository.save(user);
 
         return ResponseEntity.ok(Map.of("message", "Registered successfully"));
@@ -51,7 +53,7 @@ public class AuthController {
         }
 
         User user = opt.get();
-        if (!user.getPassword().equals(password)) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             return ResponseEntity.status(401).body(Map.of("message", "Invalid credentials"));
         }
 

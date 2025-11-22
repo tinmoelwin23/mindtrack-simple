@@ -13,8 +13,6 @@ public class User {
     @Column(unique = true)
     private String username;
 
-    // For simplicity: storing plain text password (easier for non-programmer).
-    // In a real app you should hash it, but we keep it simple here.
     private String password;
 
     public User() {
@@ -25,13 +23,23 @@ public class User {
         this.password = password;
     }
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getUsername() { return username; }
+    public String getUsername() {
+        return username;
+    }
 
-    public void setUsername(String username) { this.username = username; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    public String getPassword() { return password; }
+    public String getPassword() {
+        return password;
+    }
 
-    public void setPassword(String password) { this.password = password; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

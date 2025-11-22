@@ -3,6 +3,7 @@ body {
     background: #f3f7fb;
     margin: 0;
     padding: 0;
+    color: #2c3e50;
 }
 
 .container {
@@ -12,9 +13,7 @@ body {
 }
 
 h1 {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 20px;
+    margin: 0;
 }
 
 .card {
@@ -66,6 +65,7 @@ button:hover {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
+    margin-top: 16px;
 }
 
 #auth-section .card {
@@ -122,18 +122,24 @@ button:hover {
 
 .entry-actions {
     margin-top: 4px;
+    display: flex;
+    gap: 8px;
 }
 
 .entry-actions button {
-    background: #e74c3c;
     font-size: 12px;
     padding: 4px 8px;
+}
+
+.entry-actions .delete-btn {
+    background: #e74c3c;
 }
 
 #mood-stats {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+    margin-top: 4px;
 }
 
 .stat-box {
@@ -154,4 +160,83 @@ button:hover {
 
 .stat-box.negative {
     background: #c0392b;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+#theme-toggle {
+    background: #2c3e50;
+    color: #ffffff;
+}
+
+.profile-content {
+    display: block;
+}
+
+
+.profile-text p {
+    margin: 4px 0;
+}
+
+.advice-box {
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 6px;
+    background: #fff3cd;
+    color: #7a5b00;
+}
+
+.chart-wrapper {
+    margin-top: 12px;
+}
+
+body.dark-mode {
+    background: #111111;
+    color: #ecf0f1;
+}
+
+body.dark-mode h1 {
+    color: #ecf0f1;
+}
+
+body.dark-mode .card {
+    background: #1e272e;
+    box-shadow: none;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+    background: #2f3640;
+    color: #ecf0f1;
+    border: 1px solid #555555;
+}
+
+body.dark-mode button {
+    background: #2980b9;
+}
+
+body.dark-mode button.secondary {
+    background: #7f8c8d;
+}
+
+body.dark-mode .stat-box.positive {
+    background: #1e8449;
+}
+
+body.dark-mode .stat-box.neutral {
+    background: #566573;
+}
+
+body.dark-mode .stat-box.negative {
+    background: #922b21;
+}
+
+body.dark-mode .advice-box {
+    background: #4b3b16;
+    color: #f9e79f;
 }

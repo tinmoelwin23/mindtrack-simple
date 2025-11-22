@@ -16,15 +16,13 @@ import java.util.*;
 @RequestMapping("/api/entries")
 public class EntryController {
 
-    private final static String SESSION_USER_ID = "USER_ID";
+    private static final String SESSION_USER_ID = "USER_ID";
 
     private final UserRepository userRepository;
     private final JournalEntryRepository entryRepository;
     private final SentimentService sentimentService;
 
-    public EntryController(UserRepository userRepository,
-                           JournalEntryRepository entryRepository,
-                           SentimentService sentimentService) {
+    public EntryController(UserRepository userRepository, JournalEntryRepository entryRepository, SentimentService sentimentService) {
         this.userRepository = userRepository;
         this.entryRepository = entryRepository;
         this.sentimentService = sentimentService;
@@ -39,8 +37,7 @@ public class EntryController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createEntry(@RequestBody Map<String, String> body,
-                                         HttpSession session) {
+    public ResponseEntity<?> createEntry(@RequestBody Map<String, String> body, HttpSession session) {
         User user = requireUser(session);
         if (user == null) {
             return ResponseEntity.status(401).body(Map.of("message", "Not logged in"));
@@ -63,6 +60,41 @@ public class EntryController {
 
         return ResponseEntity.ok(Map.of(
                 "message", "Entry saved",
+                "sentimentLabel", result.getLabel(),
+                "sentimentScore", result.getScore()
+        ));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateEntry(@PathVariable Long id, @RequestBody Map<String, String> body, HttpSession session) {
+        User user = requireUser(session);
+        if (user == null) {
+            return ResponseEntity.status(401).body(Map.of("message", "Not logged in"));
+        }
+
+        Optional<JournalEntry> opt = entryRepository.findById(id);
+        if (opt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        JournalEntry entry = opt.get();
+        if (!entry.getUser().getId().equals(user.getId())) {
+            return ResponseEntity.status(403).body(Map.of("message", "Cannot edit others' entries"));
+        }
+
+        String content = body.get("content");
+        if (content == null || content.isBlank()) {
+            return ResponseEntity.badRequest().body(Map.of("message", "Content cannot be empty"));
+        }
+
+        SentimentService.Result result = sentimentService.analyze(content);
+        entry.setContent(content);
+        entry.setSentimentLabel(result.getLabel());
+        entry.setSentimentScore(result.getScore());
+        entryRepository.save(entry);
+
+        return ResponseEntity.ok(Map.of(
+                "message", "Entry updated",
                 "sentimentLabel", result.getLabel(),
                 "sentimentScore", result.getScore()
         ));
